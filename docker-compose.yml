@@ -1,0 +1,11 @@
+services:
+  api:
+    build: .
+    environment: {JOURNAL_PATH: "/data/syncmesh.wal"}
+    volumes: [sync-data:/data]
+    ports: ["8087:8080"]
+  web:
+    build: ./web
+    ports: ["8088:80"]
+    depends_on: [api]
+volumes: {sync-data: {}}
